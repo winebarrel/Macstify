@@ -45,8 +45,7 @@ Settings are stored per user through `ScreenSaverDefaults` under `jp.winebarrel.
 ## Development
 
 `Sources/MacstifyEngine.swift` holds the simulation and drawing, and depends on nothing but a
-`CGRect` and a `CGContext`. `MacstifyPreview` is a development harness that renders the real
-`MacstifyView` outside of System Settings:
+`CGRect` and a `CGContext`. `MacstifyPreview` is a development harness around it:
 
 ```sh
 xcodebuild -project Macstify.xcodeproj -scheme MacstifyPreview -configuration Release -derivedDataPath build build
@@ -56,10 +55,30 @@ $P                                    # live window
 $P --options                          # live window with the Options sheet open
 $P --snapshot out.png --frames 900    # render frames offscreen, write a PNG
 $P --snapshot out.png --preview       # as the small System Settings thumbnail
+$P --snapshot out.png --speed 4       # override the saved speed for one render
 $P --snapshot out.png --options       # render the Options sheet itself
 ```
 
+The live window hosts the real `MacstifyView`; snapshots drive the engine directly, which is how
+`--speed` applies to a single render without touching your saved settings. `--size` is in points and
+snapshots are written at 2x, as on a Retina display.
+
 The screenshots above were produced with `--snapshot`.
+
+### Thumbnail
+
+The picker in System Settings shows `Contents/Resources/thumbnail.png` and `thumbnail@2x.png`
+(90×58 and 180×116, the sizes Apple's own savers use). Without them macOS substitutes a generic
+placeholder image. `COMBINE_HIDPI_IMAGES` is off so the two stay separate PNGs instead of being
+merged into a single `thumbnail.tiff`, which the picker does not pick up.
+
+Trail spacing is proportional to the screen's shorter edge while line width is absolute, so a
+render this small collapses into a fat line at the stored speed. `--speed` compensates:
+
+```sh
+$P --snapshot Resources/thumbnail@2x.png --preview --size 90x58 --speed 4 --frames 600
+sips -Z 90 Resources/thumbnail@2x.png --out Resources/thumbnail.png
+```
 
 ## Signing
 

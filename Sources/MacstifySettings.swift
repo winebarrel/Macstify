@@ -71,6 +71,16 @@ struct MacstifySettings: Equatable {
         )
     }
 
+    /// Trimmed for the System Settings thumbnail, which is only a couple of
+    /// hundred points wide — at that size a long trail of hairlines collapses
+    /// into a smudge.
+    var previewAdjusted: MacstifySettings {
+        var adjusted = self
+        adjusted.trailLength = min(trailLength, 8)
+        adjusted.lineWidth = min(lineWidth, 1.0)
+        return adjusted
+    }
+
     func save() {
         guard let store = Self.store else { return }
         store.set(polygonCount, forKey: Key.polygonCount)

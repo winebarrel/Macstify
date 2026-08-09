@@ -20,6 +20,8 @@
 		F29F6E881AF944248B095C28 /* PreviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDAD74E3A9147A1842B2714 /* PreviewApp.swift */; };
 		93D7F66105FD4340A5B14CC4 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E0759FB3CB4B6B9AD74CEF /* ScreenSaver.framework */; };
 		0FDFDE8A2CB443F88131B532 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE32CF8FB2E43378B45050F /* Cocoa.framework */; };
+		8C6CB14815D84DAAA1C2B919 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D645726AC3435F99A32196 /* thumbnail.png */; };
+		FDB1AB9732694380BD691ED0 /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DD3B698A5943A98C44FFDF /* thumbnail@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		DBE32CF8FB2E43378B45050F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1157E6092855454C943DF802 /* Macstify.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Macstify.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C8A9E354B747E5B25334F1 /* MacstifyPreview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacstifyPreview.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64D645726AC3435F99A32196 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
+		96DD3B698A5943A98C44FFDF /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				18CFCB288CA84206B722D27C /* Sources */,
+				28244473D5624543BE60719C /* Resources */,
 				EDFFA242CC35436EAD4A9EDD /* Preview */,
 				11D2F814342A41E9A9F56FA5 /* README.md */,
 				42077A17195D41DF9A00EB5A /* Frameworks */,
@@ -80,6 +85,15 @@
 				F2AC2E91A50D47E981634ABE /* Info.plist */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		28244473D5624543BE60719C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				64D645726AC3435F99A32196 /* thumbnail.png */,
+				96DD3B698A5943A98C44FFDF /* thumbnail@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		EDFFA242CC35436EAD4A9EDD /* Preview */ = {
@@ -187,6 +201,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C6CB14815D84DAAA1C2B919 /* thumbnail.png in Resources */,
+				FDB1AB9732694380BD691ED0 /* thumbnail@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +251,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -261,7 +277,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

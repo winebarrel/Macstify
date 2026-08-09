@@ -62,14 +62,8 @@ final class MacstifyView: ScreenSaverView {
         return controller.window
     }
 
-    /// The System Settings thumbnail is only a couple of hundred points wide,
-    /// where a long trail of hairlines collapses into a smudge.
     private static func settings(isPreview: Bool) -> MacstifySettings {
-        var settings = MacstifySettings.load()
-        if isPreview {
-            settings.trailLength = min(settings.trailLength, 8)
-            settings.lineWidth = min(settings.lineWidth, 1.0)
-        }
-        return settings
+        let settings = MacstifySettings.load()
+        return isPreview ? settings.previewAdjusted : settings
     }
 }
