@@ -9,7 +9,7 @@ cycle through the spectrum.
 
 ## Options
 
-![Options](docs/options.png)
+![](https://github.com/user-attachments/assets/e4a73109-1fe3-4ceb-8551-257e5ffeb734)
 
 | Option | Default | Range | |
 | --- | --- | --- | --- |
