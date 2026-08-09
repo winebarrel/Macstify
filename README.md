@@ -44,6 +44,10 @@ Settings are stored per user through `ScreenSaverDefaults` under `jp.winebarrel.
 
 ## Development
 
+Built in Swift 6 language mode, so strict concurrency checking is on. Everything that touches AppKit
+runs on the main actor; `MacstifyEngine` stays free of actor isolation, which is what lets the
+snapshot path drive it directly.
+
 `Sources/MacstifyEngine.swift` holds the simulation and drawing, and depends on nothing but a
 `CGRect` and a `CGContext`. `MacstifyPreview` is a development harness around it:
 
