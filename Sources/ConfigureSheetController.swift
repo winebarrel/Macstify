@@ -39,74 +39,7 @@ final class ConfigureSheetController: NSObject {
     // MARK: - Interface
 
     private func buildInterface() {
-        let integer: (Double) -> String = { String(Int($0.rounded())) }
-        let multiplier: (Double) -> String = { String(format: "%.2f×", $0) }
-
-        let gridRows: [[NSView]] = [
-            makeRow(
-                title: "Shapes:",
-                control: makeStepper(range: MacstifySettings.polygonCountRange),
-                describe: integer,
-                read: { Double($0.polygonCount) },
-                write: { $0.polygonCount = Int($1.rounded()) }
-            ),
-            makeRow(
-                title: "Vertices:",
-                control: makeStepper(range: MacstifySettings.vertexCountRange),
-                describe: integer,
-                read: { Double($0.vertexCount) },
-                write: { $0.vertexCount = Int($1.rounded()) }
-            ),
-            makeRow(
-                title: "Trail length:",
-                control: makeSlider(range: MacstifySettings.trailLengthRange),
-                describe: integer,
-                read: { Double($0.trailLength) },
-                write: { $0.trailLength = Int($1.rounded()) }
-            ),
-            makeRow(
-                title: "Speed:",
-                control: makeSlider(range: MacstifySettings.speedRange),
-                describe: multiplier,
-                read: { $0.speed },
-                write: { $0.speed = $1 }
-            ),
-            makeRow(
-                title: "Line width:",
-                control: makeSlider(range: MacstifySettings.lineWidthRange),
-                describe: { String(format: "%.1f pt", $0) },
-                read: { $0.lineWidth },
-                write: { $0.lineWidth = $1 }
-            ),
-            makeRow(
-                title: "Color speed:",
-                control: makeSlider(range: MacstifySettings.colorSpeedRange),
-                describe: multiplier,
-                read: { $0.colorSpeed },
-                write: { $0.colorSpeed = $1 }
-            ),
-        ]
-
-        let grid = NSGridView(views: gridRows)
-        grid.translatesAutoresizingMaskIntoConstraints = false
-        grid.column(at: 0).xPlacement = .trailing
-        grid.rowSpacing = 10
-        grid.columnSpacing = 10
-
-        let restore = NSButton(title: "Restore Defaults", target: self,
-                               action: #selector(restoreDefaults))
-        let cancel = NSButton(title: "Cancel", target: self, action: #selector(cancel))
-        cancel.keyEquivalent = "\u{1b}"
-        let ok = NSButton(title: "OK", target: self, action: #selector(confirm))
-        ok.keyEquivalent = "\r"
-
-        let buttons = NSStackView()
-        buttons.orientation = .horizontal
-        buttons.spacing = 12
-        buttons.setViews([restore], in: .leading)
-        buttons.setViews([cancel, ok], in: .trailing)
-
-        let root = NSStackView(views: [grid, buttons])
+        let root = NSStackView(views: [makeGrid(), makeButtons()])
         root.orientation = .vertical
         root.alignment = .width
         root.spacing = 20
@@ -125,6 +58,59 @@ final class ConfigureSheetController: NSObject {
         window.contentView = content
         content.layoutSubtreeIfNeeded()
         window.setContentSize(content.fittingSize)
+    }
+
+    private func makeGrid() -> NSGridView {
+        let grid = NSGridView(views: makeRows())
+        grid.translatesAutoresizingMaskIntoConstraints = false
+        grid.column(at: 0).xPlacement = .trailing
+        grid.rowSpacing = 10
+        grid.columnSpacing = 10
+        return grid
+    }
+
+    private func makeRows() -> [[NSView]] {
+        let integer: (Double) -> String = { String(Int($0.rounded())) }
+        let multiplier: (Double) -> String = { String(format: "%.2f×", $0) }
+        let points: (Double) -> String = { String(format: "%.1f pt", $0) }
+        let settings = MacstifySettings.self
+
+        return [
+            makeRow(title: "Shapes:", control: makeStepper(range: settings.polygonCountRange),
+                    describe: integer, read: { Double($0.polygonCount) },
+                    write: { $0.polygonCount = Int($1.rounded()) }),
+            makeRow(title: "Vertices:", control: makeStepper(range: settings.vertexCountRange),
+                    describe: integer, read: { Double($0.vertexCount) },
+                    write: { $0.vertexCount = Int($1.rounded()) }),
+            makeRow(title: "Trail length:", control: makeSlider(range: settings.trailLengthRange),
+                    describe: integer, read: { Double($0.trailLength) },
+                    write: { $0.trailLength = Int($1.rounded()) }),
+            makeRow(title: "Speed:", control: makeSlider(range: settings.speedRange),
+                    describe: multiplier, read: { $0.speed },
+                    write: { $0.speed = $1 }),
+            makeRow(title: "Line width:", control: makeSlider(range: settings.lineWidthRange),
+                    describe: points, read: { $0.lineWidth },
+                    write: { $0.lineWidth = $1 }),
+            makeRow(title: "Color speed:", control: makeSlider(range: settings.colorSpeedRange),
+                    describe: multiplier, read: { $0.colorSpeed },
+                    write: { $0.colorSpeed = $1 }),
+        ]
+    }
+
+    private func makeButtons() -> NSStackView {
+        let restore = NSButton(title: "Restore Defaults", target: self,
+                               action: #selector(restoreDefaults))
+        let cancel = NSButton(title: "Cancel", target: self, action: #selector(cancel))
+        cancel.keyEquivalent = "\u{1b}"
+        let ok = NSButton(title: "OK", target: self, action: #selector(confirm))
+        ok.keyEquivalent = "\r"
+
+        let buttons = NSStackView()
+        buttons.orientation = .horizontal
+        buttons.spacing = 12
+        buttons.setViews([restore], in: .leading)
+        buttons.setViews([cancel, ok], in: .trailing)
+        return buttons
     }
 
     private func makeRow(
@@ -172,7 +158,7 @@ final class ConfigureSheetController: NSObject {
     }
 
     private func makeSlider(range: ClosedRange<Int>) -> NSSlider {
-        makeSlider(range: Double(range.lowerBound)...Double(range.upperBound))
+        makeSlider(range: Double(range.lowerBound) ... Double(range.upperBound))
     }
 
     /// Pushes `settings` back out to every control, so one refresh path serves

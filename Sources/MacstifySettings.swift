@@ -27,12 +27,12 @@ struct MacstifySettings: Equatable {
         colorSpeed: 1.0
     )
 
-    static let polygonCountRange = 1...8
-    static let vertexCountRange = 3...12
-    static let trailLengthRange = 1...40
-    static let speedRange = 0.2...3.0
-    static let lineWidthRange = 0.5...4.0
-    static let colorSpeedRange = 0.0...3.0
+    static let polygonCountRange = 1 ... 8
+    static let vertexCountRange = 3 ... 12
+    static let trailLengthRange = 1 ... 40
+    static let speedRange = 0.2 ... 3.0
+    static let lineWidthRange = 0.5 ... 4.0
+    static let colorSpeedRange = 0.0 ... 3.0
 
     private enum Key {
         static let polygonCount = "polygonCount"

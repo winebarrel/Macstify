@@ -69,6 +69,13 @@ snapshots are written at 2x, as on a Retina display.
 
 The screenshots above were produced with `--snapshot`.
 
+CI builds and analyses both schemes and runs the same lint and format checks you can run locally:
+
+```sh
+swiftlint --strict
+swiftformat Sources Preview --lint
+```
+
 ### Thumbnail
 
 The picker in System Settings shows `Contents/Resources/thumbnail.png` and `thumbnail@2x.png`
