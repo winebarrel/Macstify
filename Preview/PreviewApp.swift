@@ -18,6 +18,7 @@ import AppKit
 ///
 /// `--size` is in points; snapshots are written at 2x, as on a Retina display.
 @main
+@MainActor
 enum PreviewApp {
     private static var delegate: PreviewDelegate?
 

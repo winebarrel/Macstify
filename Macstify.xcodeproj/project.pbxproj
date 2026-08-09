@@ -7,38 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A8E123FC2DF24FFA8B2208ED /* MacstifySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D88FC25512248549D86855A /* MacstifySettings.swift */; };
+		0FDFDE8A2CB443F88131B532 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE32CF8FB2E43378B45050F /* Cocoa.framework */; };
+		1B06B89EDFE5445281EFDBCB /* MacstifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861B2FBD58E1440EB09E833D /* MacstifyView.swift */; };
+		245E1970EA984A329F085ABA /* MacstifyEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289D4CCAE8C24B83ADA75A25 /* MacstifyEngine.swift */; };
+		2DC46501F7584B35BF8019F5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE32CF8FB2E43378B45050F /* Cocoa.framework */; };
 		30EEACD3BCF044BC9917047D /* MacstifyEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289D4CCAE8C24B83ADA75A25 /* MacstifyEngine.swift */; };
-		84B97FBF584D4E54821CC32C /* MacstifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861B2FBD58E1440EB09E833D /* MacstifyView.swift */; };
 		51EFE9211DBA4385B581A3EB /* ConfigureSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C8DC66131540CB896A3374 /* ConfigureSheetController.swift */; };
 		69F212D375B4404C824F81A4 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E0759FB3CB4B6B9AD74CEF /* ScreenSaver.framework */; };
-		2DC46501F7584B35BF8019F5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE32CF8FB2E43378B45050F /* Cocoa.framework */; };
-		9D681DF23DBD48048881C20A /* MacstifySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D88FC25512248549D86855A /* MacstifySettings.swift */; };
-		245E1970EA984A329F085ABA /* MacstifyEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289D4CCAE8C24B83ADA75A25 /* MacstifyEngine.swift */; };
-		1B06B89EDFE5445281EFDBCB /* MacstifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861B2FBD58E1440EB09E833D /* MacstifyView.swift */; };
 		777D4E7919C34076BBA286FE /* ConfigureSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C8DC66131540CB896A3374 /* ConfigureSheetController.swift */; };
-		F29F6E881AF944248B095C28 /* PreviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDAD74E3A9147A1842B2714 /* PreviewApp.swift */; };
-		93D7F66105FD4340A5B14CC4 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E0759FB3CB4B6B9AD74CEF /* ScreenSaver.framework */; };
-		0FDFDE8A2CB443F88131B532 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE32CF8FB2E43378B45050F /* Cocoa.framework */; };
+		84B97FBF584D4E54821CC32C /* MacstifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861B2FBD58E1440EB09E833D /* MacstifyView.swift */; };
 		8C6CB14815D84DAAA1C2B919 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D645726AC3435F99A32196 /* thumbnail.png */; };
+		93D7F66105FD4340A5B14CC4 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E0759FB3CB4B6B9AD74CEF /* ScreenSaver.framework */; };
+		9D681DF23DBD48048881C20A /* MacstifySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D88FC25512248549D86855A /* MacstifySettings.swift */; };
+		A8E123FC2DF24FFA8B2208ED /* MacstifySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D88FC25512248549D86855A /* MacstifySettings.swift */; };
+		F29F6E881AF944248B095C28 /* PreviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDAD74E3A9147A1842B2714 /* PreviewApp.swift */; };
 		FDB1AB9732694380BD691ED0 /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DD3B698A5943A98C44FFDF /* thumbnail@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6D88FC25512248549D86855A /* MacstifySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacstifySettings.swift; sourceTree = "<group>"; };
-		289D4CCAE8C24B83ADA75A25 /* MacstifyEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacstifyEngine.swift; sourceTree = "<group>"; };
-		861B2FBD58E1440EB09E833D /* MacstifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacstifyView.swift; sourceTree = "<group>"; };
-		54C8DC66131540CB896A3374 /* ConfigureSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureSheetController.swift; sourceTree = "<group>"; };
-		F2AC2E91A50D47E981634ABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2CDAD74E3A9147A1842B2714 /* PreviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewApp.swift; sourceTree = "<group>"; };
-		649A29882C1F4D5C881DD93C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1157E6092855454C943DF802 /* Macstify.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Macstify.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		11D2F814342A41E9A9F56FA5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		23E0759FB3CB4B6B9AD74CEF /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
-		DBE32CF8FB2E43378B45050F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		1157E6092855454C943DF802 /* Macstify.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Macstify.saver; sourceTree = BUILT_PRODUCTS_DIR; };
+		289D4CCAE8C24B83ADA75A25 /* MacstifyEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacstifyEngine.swift; sourceTree = "<group>"; };
+		2CDAD74E3A9147A1842B2714 /* PreviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewApp.swift; sourceTree = "<group>"; };
+		54C8DC66131540CB896A3374 /* ConfigureSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureSheetController.swift; sourceTree = "<group>"; };
 		61C8A9E354B747E5B25334F1 /* MacstifyPreview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacstifyPreview.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		649A29882C1F4D5C881DD93C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D645726AC3435F99A32196 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
+		6D88FC25512248549D86855A /* MacstifySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacstifySettings.swift; sourceTree = "<group>"; };
+		861B2FBD58E1440EB09E833D /* MacstifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacstifyView.swift; sourceTree = "<group>"; };
 		96DD3B698A5943A98C44FFDF /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@2x.png"; sourceTree = "<group>"; };
+		DBE32CF8FB2E43378B45050F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F2AC2E91A50D47E981634ABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,18 +63,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F1993427EAA747F2B2FDF273 = {
-			isa = PBXGroup;
-			children = (
-				18CFCB288CA84206B722D27C /* Sources */,
-				28244473D5624543BE60719C /* Resources */,
-				EDFFA242CC35436EAD4A9EDD /* Preview */,
-				11D2F814342A41E9A9F56FA5 /* README.md */,
-				42077A17195D41DF9A00EB5A /* Frameworks */,
-				732D6C15D1B3416992D318F7 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
 		18CFCB288CA84206B722D27C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,15 +84,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		EDFFA242CC35436EAD4A9EDD /* Preview */ = {
-			isa = PBXGroup;
-			children = (
-				2CDAD74E3A9147A1842B2714 /* PreviewApp.swift */,
-				649A29882C1F4D5C881DD93C /* Info.plist */,
-			);
-			path = Preview;
-			sourceTree = "<group>";
-		};
 		42077A17195D41DF9A00EB5A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,26 +102,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		EDFFA242CC35436EAD4A9EDD /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				2CDAD74E3A9147A1842B2714 /* PreviewApp.swift */,
+				649A29882C1F4D5C881DD93C /* Info.plist */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
+		F1993427EAA747F2B2FDF273 = {
+			isa = PBXGroup;
+			children = (
+				18CFCB288CA84206B722D27C /* Sources */,
+				28244473D5624543BE60719C /* Resources */,
+				EDFFA242CC35436EAD4A9EDD /* Preview */,
+				11D2F814342A41E9A9F56FA5 /* README.md */,
+				42077A17195D41DF9A00EB5A /* Frameworks */,
+				732D6C15D1B3416992D318F7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CC903E05C2DB4B12A5E5124C /* Macstify */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FCBCF75AA1E54DBC8C10AB90 /* Build configuration list for PBXNativeTarget "Macstify" */;
-			buildPhases = (
-				2A09784303744C80A945DE58 /* Sources */,
-				9540350DE78E49ACB1D27B78 /* Frameworks */,
-				4248E7CFE12D47AFAE0E34F1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Macstify;
-			productName = Macstify;
-			productReference = 1157E6092855454C943DF802 /* Macstify.saver */;
-			productType = "com.apple.product-type.bundle";
-		};
 		A054D5E9D07E43A085F0937C /* MacstifyPreview */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7AD0E0CC59546FF9CFAFFD2 /* Build configuration list for PBXNativeTarget "MacstifyPreview" */;
@@ -160,6 +143,23 @@
 			productReference = 61C8A9E354B747E5B25334F1 /* MacstifyPreview.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CC903E05C2DB4B12A5E5124C /* Macstify */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCBCF75AA1E54DBC8C10AB90 /* Build configuration list for PBXNativeTarget "Macstify" */;
+			buildPhases = (
+				2A09784303744C80A945DE58 /* Sources */,
+				9540350DE78E49ACB1D27B78 /* Frameworks */,
+				4248E7CFE12D47AFAE0E34F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Macstify;
+			productName = Macstify;
+			productReference = 1157E6092855454C943DF802 /* Macstify.saver */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -167,12 +167,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 2660;
 				TargetAttributes = {
-					CC903E05C2DB4B12A5E5124C = {
+					A054D5E9D07E43A085F0937C = {
 						CreatedOnToolsVersion = 26.3;
 					};
-					A054D5E9D07E43A085F0937C = {
+					CC903E05C2DB4B12A5E5124C = {
 						CreatedOnToolsVersion = 26.3;
 					};
 				};
@@ -216,17 +216,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2A09784303744C80A945DE58 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				30EEACD3BCF044BC9917047D /* MacstifyEngine.swift in Sources */,
-				A8E123FC2DF24FFA8B2208ED /* MacstifySettings.swift in Sources */,
-				84B97FBF584D4E54821CC32C /* MacstifyView.swift in Sources */,
-				51EFE9211DBA4385B581A3EB /* ConfigureSheetController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0AF58EDDD1F9441DB6401DCF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -239,79 +228,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2A09784303744C80A945DE58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30EEACD3BCF044BC9917047D /* MacstifyEngine.swift in Sources */,
+				A8E123FC2DF24FFA8B2208ED /* MacstifySettings.swift in Sources */,
+				84B97FBF584D4E54821CC32C /* MacstifyView.swift in Sources */,
+				51EFE9211DBA4385B581A3EB /* ConfigureSheetController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		66380BDDBB614CE996E410B1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GENERATE_INFOPLIST_FILE = NO;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		3F65BDC3CF494556B2DA3702 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = macosx;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		3DE8C5B086DB4FFFB2ED726E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = Sources/Info.plist;
-				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = jp.winebarrel.Macstify;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = saver;
-			};
-			name = Debug;
-		};
 		15111ED6B6AF4060A89A5695 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -329,6 +263,7 @@
 		3C31C29A14694C2FACC94A7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = Preview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -339,9 +274,130 @@
 			};
 			name = Debug;
 		};
+		3DE8C5B086DB4FFFB2ED726E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jp.winebarrel.Macstify;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = saver;
+			};
+			name = Debug;
+		};
+		3F65BDC3CF494556B2DA3702 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = NO;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		66380BDDBB614CE996E410B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = NO;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
 		EDF8207572564CBAB1873417 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = Preview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -355,6 +411,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C7AD0E0CC59546FF9CFAFFD2 /* Build configuration list for PBXNativeTarget "MacstifyPreview" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C31C29A14694C2FACC94A7E /* Debug */,
+				EDF8207572564CBAB1873417 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DD5AD787CB084C7C9A4014E9 /* Build configuration list for PBXProject "Macstify" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -369,15 +434,6 @@
 			buildConfigurations = (
 				3DE8C5B086DB4FFFB2ED726E /* Debug */,
 				15111ED6B6AF4060A89A5695 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C7AD0E0CC59546FF9CFAFFD2 /* Build configuration list for PBXNativeTarget "MacstifyPreview" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3C31C29A14694C2FACC94A7E /* Debug */,
-				EDF8207572564CBAB1873417 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

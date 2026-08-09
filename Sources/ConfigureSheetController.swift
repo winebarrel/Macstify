@@ -5,6 +5,7 @@ import AppKit
 /// A nib would have to be located inside the loaded bundle at runtime, which
 /// is a common source of breakage for screen savers; assembling the controls
 /// directly avoids that failure mode entirely.
+@MainActor
 final class ConfigureSheetController: NSObject {
     /// A labelled control bound to one field of `MacstifySettings`.
     private struct Row {
