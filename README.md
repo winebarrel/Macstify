@@ -11,9 +11,7 @@ Requires macOS 13 or later. Universal (Apple silicon and Intel).
 ## Install
 
 ```sh
-xcodebuild -project Macstify.xcodeproj -scheme Macstify -configuration Release -derivedDataPath build build
-mkdir -p ~/Library/"Screen Savers"
-cp -R build/Build/Products/Release/Macstify.saver ~/Library/"Screen Savers"/
+make install
 ```
 
 Then open System Settings → Screen Saver and pick **Macstify**.
@@ -52,7 +50,8 @@ snapshot path drive it directly.
 `CGRect` and a `CGContext`. `MacstifyPreview` is a development harness around it:
 
 ```sh
-xcodebuild -project Macstify.xcodeproj -scheme MacstifyPreview -configuration Release -derivedDataPath build build
+make preview                          # build it and open the live window
+
 P=build/Build/Products/Release/MacstifyPreview.app/Contents/MacOS/MacstifyPreview
 
 $P                                    # live window
@@ -69,12 +68,8 @@ snapshots are written at 2x, as on a Retina display.
 
 The screenshots above were produced with `--snapshot`.
 
-CI builds and analyses both schemes and runs the same lint and format checks you can run locally:
-
-```sh
-swiftlint --strict
-swiftformat Sources Preview --lint
-```
+CI builds and analyses both schemes and runs the same checks `make lint` and `make format` run
+locally.
 
 ### Thumbnail
 
@@ -91,11 +86,30 @@ $P --snapshot Resources/thumbnail@2x.png --preview --size 90x58 --speed 4 --fram
 sips -Z 90 Resources/thumbnail@2x.png --out Resources/thumbnail.png
 ```
 
-## Signing
+## Releasing
 
-The build is ad-hoc signed, which is enough for a saver you build and install yourself. Copying the
-bundle to another Mac means it arrives quarantined, and Gatekeeper will refuse it — that needs a
-Developer ID signature and notarization.
+`make install` signs with whatever certificate the project is configured for, which is enough for a
+saver you build and install yourself. Copying that bundle to another Mac is not: it arrives
+quarantined, and Gatekeeper refuses anything without a Developer ID signature and a notarization
+ticket.
+
+```sh
+make release
+```
+
+builds with the Developer ID identity and a secure timestamp, submits the bundle to Apple's notary
+service, staples the returned ticket, and writes `dist/Macstify.zip` alongside a SHA-256
+`dist/checksum.txt`. The zip that gets submitted and the zip that gets distributed are different
+files — stapling applies to the bundle, so the distributable has to be re-zipped afterwards.
+
+It needs a `Developer ID Application` certificate in the keychain and notary credentials stored
+under the profile name `macstify`:
+
+```sh
+xcrun notarytool store-credentials macstify --apple-id you@example.com --team-id TEAMID
+```
+
+Override the defaults with `make release CODESIGN_IDENTITY="..." NOTARY_PROFILE="..."`.
 
 ## License
 
