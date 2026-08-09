@@ -1,12 +1,11 @@
+
 # Macstify
 
 A macOS screen saver that recreates *Mystify Your Mind* from Windows 95: polygons drift across the
 screen, bounce off the edges and leave a trail of their past outlines behind, while their colors
 cycle through the spectrum.
 
-![Macstify](docs/screenshot.png)
-
-Requires macOS 13 or later. Universal (Apple silicon and Intel).
+![](https://github.com/user-attachments/assets/1cf00b65-e92e-471a-a8c9-d34067adf3cf)
 
 ## Options
 
