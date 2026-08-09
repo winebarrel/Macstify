@@ -198,7 +198,9 @@ final class ConfigureSheetController: NSObject {
             parent.endSheet(window, returnCode: saved ? .OK : .cancel)
         } else {
             // Reachable from the preview app, which shows the sheet standalone.
-            if NSApp.modalWindow === window { NSApp.stopModal() }
+            if NSApp.modalWindow === window {
+                NSApp.stopModal()
+            }
             window.orderOut(nil)
         }
         onDismiss(saved)

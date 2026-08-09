@@ -150,7 +150,9 @@ final class MacstifyEngine {
 
         timeSinceGhost += dt
         let recordGhost = timeSinceGhost >= Self.ghostInterval
-        if recordGhost { timeSinceGhost = 0 }
+        if recordGhost {
+            timeSinceGhost = 0
+        }
 
         for index in polygons.indices {
             var polygon = polygons[index]
