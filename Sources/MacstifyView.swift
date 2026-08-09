@@ -20,11 +20,13 @@ final class MacstifyView: ScreenSaverView {
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override var isOpaque: Bool { true }
+    override var isOpaque: Bool {
+        true
+    }
 
     override func startAnimation() {
         super.startAnimation()
@@ -38,7 +40,7 @@ final class MacstifyView: ScreenSaverView {
         setNeedsDisplay(bounds)
     }
 
-    override func draw(_ rect: NSRect) {
+    override func draw(_: NSRect) {
         guard let context = NSGraphicsContext.current?.cgContext else { return }
         engine.draw(in: bounds, context: context)
     }
@@ -48,7 +50,9 @@ final class MacstifyView: ScreenSaverView {
         engine.resize(to: bounds)
     }
 
-    override var hasConfigureSheet: Bool { true }
+    override var hasConfigureSheet: Bool {
+        true
+    }
 
     override var configureSheet: NSWindow? {
         let controller = ConfigureSheetController { [weak self] saved in
