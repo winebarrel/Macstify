@@ -43,7 +43,9 @@ final class MacstifyEngine {
 
     /// Ghosts to keep. `trailLength` counts the outlines actually on screen,
     /// and the live shape is one of them.
-    private var ghostCapacity: Int { max(0, settings.trailLength - 1) }
+    private var ghostCapacity: Int {
+        max(0, settings.trailLength - 1)
+    }
 
     init(settings: MacstifySettings = .load()) {
         self.settings = settings
@@ -82,30 +84,30 @@ final class MacstifyEngine {
         polygons = []
         timeSinceGhost = 0
 
-        let field = self.field
-        guard field.width > 0, field.height > 0 else { return }
+        let area = field
+        guard area.width > 0, area.height > 0 else { return }
 
-        let speed = min(field.width, field.height) * Self.baseSpeedRatio * settings.speed
+        let speed = min(area.width, area.height) * Self.baseSpeedRatio * settings.speed
         // One shared rate: every shape keeps its initial slice of the colour
         // wheel forever. Per-shape rates let the hues drift together after a
         // minute or two, which reads as a bug rather than as palette cycling.
         let hueSpeed = Self.baseHueSpeed * settings.colorSpeed
 
-        polygons = (0..<settings.polygonCount).map { index in
+        polygons = (0 ..< settings.polygonCount).map { index in
             // Spread the starting hues so the shapes never launch in unison.
             let hue = Double(index) / Double(settings.polygonCount)
 
             var points: [CGPoint] = []
             var velocities: [CGVector] = []
-            for _ in 0..<settings.vertexCount {
+            for _ in 0 ..< settings.vertexCount {
                 points.append(CGPoint(
-                    x: Double.random(in: field.minX...field.maxX),
-                    y: Double.random(in: field.minY...field.maxY)
+                    x: Double.random(in: area.minX ... area.maxX),
+                    y: Double.random(in: area.minY ... area.maxY)
                 ))
                 // Independent per-vertex velocity is what makes the polygon
                 // churn through shapes instead of drifting rigidly.
-                let angle = Double.random(in: 0..<(2 * .pi))
-                let magnitude = speed * Double.random(in: 0.6...1.4)
+                let angle = Double.random(in: 0 ..< (2 * .pi))
+                let magnitude = speed * Double.random(in: 0.6 ... 1.4)
                 velocities.append(CGVector(dx: cos(angle) * magnitude, dy: sin(angle) * magnitude))
             }
 
@@ -143,12 +145,14 @@ final class MacstifyEngine {
 
     /// Advances the simulation by `dt` seconds.
     func step(dt: TimeInterval) {
-        let field = self.field
-        guard field.width > 0, field.height > 0 else { return }
+        let area = field
+        guard area.width > 0, area.height > 0 else { return }
 
         timeSinceGhost += dt
         let recordGhost = timeSinceGhost >= Self.ghostInterval
-        if recordGhost { timeSinceGhost = 0 }
+        if recordGhost {
+            timeSinceGhost = 0
+        }
 
         for index in polygons.indices {
             var polygon = polygons[index]
@@ -160,19 +164,19 @@ final class MacstifyEngine {
                 point.x += velocity.dx * dt
                 point.y += velocity.dy * dt
 
-                if point.x < field.minX {
-                    point.x = min(field.minX + (field.minX - point.x), field.maxX)
+                if point.x < area.minX {
+                    point.x = min(area.minX + (area.minX - point.x), area.maxX)
                     velocity.dx = -velocity.dx
-                } else if point.x > field.maxX {
-                    point.x = max(field.maxX - (point.x - field.maxX), field.minX)
+                } else if point.x > area.maxX {
+                    point.x = max(area.maxX - (point.x - area.maxX), area.minX)
                     velocity.dx = -velocity.dx
                 }
 
-                if point.y < field.minY {
-                    point.y = min(field.minY + (field.minY - point.y), field.maxY)
+                if point.y < area.minY {
+                    point.y = min(area.minY + (area.minY - point.y), area.maxY)
                     velocity.dy = -velocity.dy
-                } else if point.y > field.maxY {
-                    point.y = max(field.maxY - (point.y - field.maxY), field.minY)
+                } else if point.y > area.maxY {
+                    point.y = max(area.maxY - (point.y - area.maxY), area.minY)
                     velocity.dy = -velocity.dy
                 }
 

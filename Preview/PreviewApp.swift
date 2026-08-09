@@ -22,6 +22,8 @@ import AppKit
 enum PreviewApp {
     private static var delegate: PreviewDelegate?
 
+    // Called by the Swift runtime through @main, never from code.
+    // swiftlint:disable:next unused_declaration
     static func main() {
         let options: Options
         do {
@@ -112,13 +114,17 @@ enum PreviewApp {
         _ = NSApplication.shared
 
         var settings = MacstifySettings.load()
-        if isPreview { settings = settings.previewAdjusted }
-        if let speed { settings.speed = speed }
+        if isPreview {
+            settings = settings.previewAdjusted
+        }
+        if let speed {
+            settings.speed = speed
+        }
 
         let rect = NSRect(origin: .zero, size: size)
         let engine = MacstifyEngine(settings: settings)
         engine.reset(bounds: rect)
-        for _ in 0..<frames {
+        for _ in 0 ..< frames {
             engine.step(dt: 1.0 / 60.0)
         }
 
@@ -187,7 +193,9 @@ enum PreviewApp {
 }
 
 private final class PreviewDelegate: NSObject, NSApplicationDelegate {
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { true }
+    func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
+        true
+    }
 }
 
 private struct Options {
@@ -203,34 +211,13 @@ private struct Options {
         var iterator = arguments.makeIterator()
         while let argument = iterator.next() {
             switch argument {
-            case "--snapshot":
-                snapshotPath = try Self.value(after: argument, from: &iterator)
-            case "--frames":
-                let raw = try Self.value(after: argument, from: &iterator)
-                guard let value = Int(raw), value > 0 else {
-                    throw OptionError("--frames expects a positive integer, got \(raw)")
-                }
-                frames = value
-            case "--size":
-                let raw = try Self.value(after: argument, from: &iterator)
-                let parts = raw.lowercased().split(separator: "x")
-                guard parts.count == 2,
-                      let width = Double(parts[0]), let height = Double(parts[1]),
-                      width > 0, height > 0 else {
-                    throw OptionError("--size expects WIDTHxHEIGHT, got \(raw)")
-                }
-                size = NSSize(width: width, height: height)
-                explicitSize = true
-            case "--speed":
-                let raw = try Self.value(after: argument, from: &iterator)
-                guard let value = Double(raw), value > 0 else {
-                    throw OptionError("--speed expects a positive number, got \(raw)")
-                }
-                speed = value
             case "--options":
                 showOptions = true
             case "--preview":
                 isPreview = true
+            case "--snapshot", "--frames", "--size", "--speed":
+                let raw = try Self.value(after: argument, from: &iterator)
+                try set(argument, to: raw, explicitSize: &explicitSize)
             default:
                 throw OptionError("unknown argument: \(argument)")
             }
@@ -240,6 +227,37 @@ private struct Options {
         if isPreview, !explicitSize {
             size = NSSize(width: 320, height: 200)
         }
+    }
+
+    private mutating func set(_ flag: String, to raw: String, explicitSize: inout Bool) throws {
+        switch flag {
+        case "--snapshot":
+            snapshotPath = raw
+        case "--frames":
+            guard let value = Int(raw), value > 0 else {
+                throw OptionError("\(flag) expects a positive integer, got \(raw)")
+            }
+            frames = value
+        case "--size":
+            size = try Self.parseSize(raw)
+            explicitSize = true
+        default:
+            guard let value = Double(raw), value > 0 else {
+                throw OptionError("\(flag) expects a positive number, got \(raw)")
+            }
+            speed = value
+        }
+    }
+
+    private static func parseSize(_ raw: String) throws -> NSSize {
+        let parts = raw.lowercased().split(separator: "x")
+        guard parts.count == 2,
+              let width = Double(parts[0]), let height = Double(parts[1]),
+              width > 0, height > 0
+        else {
+            throw OptionError("--size expects WIDTHxHEIGHT, got \(raw)")
+        }
+        return NSSize(width: width, height: height)
     }
 
     private static func value(
@@ -255,5 +273,7 @@ private struct Options {
 
 private struct OptionError: LocalizedError {
     let errorDescription: String?
-    init(_ message: String) { errorDescription = message }
+    init(_ message: String) {
+        errorDescription = message
+    }
 }
