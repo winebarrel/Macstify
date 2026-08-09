@@ -1,18 +1,22 @@
 import AppKit
 
-/// A development harness for `MacstifyView`.
+/// A development harness for the screen saver.
 ///
-/// It instantiates the real screen saver view rather than talking to the
-/// engine directly, so running it also proves the view is constructible
-/// outside System Settings — the failure that otherwise only shows up as an
-/// empty preview thumbnail after installing.
+/// The live window hosts the real `MacstifyView`, so running it proves the
+/// view is constructible outside System Settings — the failure that otherwise
+/// only shows up as an empty preview after installing. Snapshots drive
+/// `MacstifyEngine` directly instead, which is what lets `--speed` apply to a
+/// single render.
 ///
 ///     MacstifyPreview                              # live window
 ///     MacstifyPreview --options                    # live window + Options sheet
 ///     MacstifyPreview --snapshot out.png           # render frames, write a PNG
 ///     MacstifyPreview --snapshot out.png --frames 900 --size 1920x1080
 ///     MacstifyPreview --snapshot out.png --preview # as the System Settings thumbnail
+///     MacstifyPreview --snapshot out.png --speed 4 # override the saved speed
 ///     MacstifyPreview --snapshot out.png --options # render the Options sheet instead
+///
+/// `--size` is in points; snapshots are written at 2x, as on a Retina display.
 @main
 enum PreviewApp {
     private static var delegate: PreviewDelegate?
@@ -31,7 +35,7 @@ enum PreviewApp {
                 snapshotOptionsSheet(to: path)
             } else {
                 snapshot(to: path, size: options.size, frames: options.frames,
-                         isPreview: options.isPreview)
+                         isPreview: options.isPreview, speed: options.speed)
             }
         } else {
             runLive(size: options.size, showOptions: options.showOptions,
@@ -91,33 +95,58 @@ enum PreviewApp {
 
     // MARK: - Snapshot
 
-    private static func snapshot(to path: String, size: NSSize, frames: Int, isPreview: Bool) {
-        // Enough of AppKit to make NSColor and view drawing usable.
+    /// Steps the engine offscreen and writes the result as a PNG.
+    ///
+    /// This drives `MacstifyEngine` rather than the view, so `--speed` can
+    /// override a setting for one render without writing to the preferences
+    /// the installed saver reads.
+    private static func snapshot(
+        to path: String,
+        size: NSSize,
+        frames: Int,
+        isPreview: Bool,
+        speed: Double?
+    ) {
+        // Enough of AppKit to make NSColor usable.
         _ = NSApplication.shared
 
-        let frame = NSRect(origin: .zero, size: size)
-        guard let view = MacstifyView(frame: frame, isPreview: isPreview) else {
-            FileHandle.standardError.write(Data("failed to create MacstifyView\n".utf8))
-            exit(1)
-        }
+        var settings = MacstifySettings.load()
+        if isPreview { settings = settings.previewAdjusted }
+        if let speed { settings.speed = speed }
 
-        // An offscreen window gives the view a backing store to cache into.
-        let window = NSWindow(contentRect: frame, styleMask: [.borderless],
-                              backing: .buffered, defer: false)
-        window.contentView = view
-
+        let rect = NSRect(origin: .zero, size: size)
+        let engine = MacstifyEngine(settings: settings)
+        engine.reset(bounds: rect)
         for _ in 0..<frames {
-            view.animateOneFrame()
+            engine.step(dt: 1.0 / 60.0)
         }
 
-        guard let rep = view.bitmapImageRepForCachingDisplay(in: view.bounds) else {
+        // `size` is in points; render at 2x as a Retina display would.
+        let scale = 2
+        guard let rep = NSBitmapImageRep(
+            bitmapDataPlanes: nil,
+            pixelsWide: Int(size.width) * scale,
+            pixelsHigh: Int(size.height) * scale,
+            bitsPerSample: 8,
+            samplesPerPixel: 4,
+            hasAlpha: true,
+            isPlanar: false,
+            colorSpaceName: .deviceRGB,
+            bytesPerRow: 0,
+            bitsPerPixel: 0
+        ), let context = NSGraphicsContext(bitmapImageRep: rep) else {
             FileHandle.standardError.write(Data("failed to allocate a bitmap\n".utf8))
             exit(1)
         }
-        view.cacheDisplay(in: view.bounds, to: rep)
+
+        NSGraphicsContext.saveGraphicsState()
+        NSGraphicsContext.current = context
+        context.cgContext.scaleBy(x: CGFloat(scale), y: CGFloat(scale))
+        engine.draw(in: rect, context: context.cgContext)
+        NSGraphicsContext.restoreGraphicsState()
 
         write(rep, to: path)
-        print("wrote \(path) (\(Int(size.width))x\(Int(size.height)), \(frames) frames)")
+        print("wrote \(path) (\(rep.pixelsWide)x\(rep.pixelsHigh) px, \(frames) frames)")
     }
 
     /// Renders the Options sheet offscreen, so its layout can be checked
@@ -166,6 +195,7 @@ private struct Options {
     var size = NSSize(width: 1280, height: 800)
     var showOptions = false
     var isPreview = false
+    var speed: Double?
 
     init(_ arguments: some Sequence<String>) throws {
         var explicitSize = false
@@ -190,6 +220,12 @@ private struct Options {
                 }
                 size = NSSize(width: width, height: height)
                 explicitSize = true
+            case "--speed":
+                let raw = try Self.value(after: argument, from: &iterator)
+                guard let value = Double(raw), value > 0 else {
+                    throw OptionError("--speed expects a positive number, got \(raw)")
+                }
+                speed = value
             case "--options":
                 showOptions = true
             case "--preview":
