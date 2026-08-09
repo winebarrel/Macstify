@@ -114,8 +114,12 @@ enum PreviewApp {
         _ = NSApplication.shared
 
         var settings = MacstifySettings.load()
-        if isPreview { settings = settings.previewAdjusted }
-        if let speed { settings.speed = speed }
+        if isPreview {
+            settings = settings.previewAdjusted
+        }
+        if let speed {
+            settings.speed = speed
+        }
 
         let rect = NSRect(origin: .zero, size: size)
         let engine = MacstifyEngine(settings: settings)
