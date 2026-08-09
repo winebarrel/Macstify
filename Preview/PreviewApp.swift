@@ -219,6 +219,15 @@ private struct Options {
                 let raw = try Self.value(after: argument, from: &iterator)
                 try set(argument, to: raw, explicitSize: &explicitSize)
             default:
+                // Xcode launches the app with NSUserDefaults-style arguments
+                // such as `-NSDocumentRevisionsDebugMode YES`. Rejecting those
+                // means Run quits before the window ever appears, so skip any
+                // single-dash flag and the value that follows it. A misspelt
+                // `--option` still fails loudly.
+                guard argument.hasPrefix("--") else {
+                    _ = iterator.next()
+                    continue
+                }
                 throw OptionError("unknown argument: \(argument)")
             }
         }
