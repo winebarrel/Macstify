@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      - name: Run SwiftLint
+        run: swiftlint --strict
+
+  format:
+    name: Format
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install SwiftFormat
+        run: brew install swiftformat
+      # Paths come first: --lint would otherwise swallow the one after it.
+      - name: Check formatting
+        run: swiftformat Sources Preview --lint
+
+  build:
+    name: Build and Analyse
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      - name: Build and Analyse
+        run: |
+          set -o pipefail
+          for scheme in Macstify MacstifyPreview; do
+            xcodebuild build analyze \
+              -project Macstify.xcodeproj \
+              -scheme "$scheme" \
+              -destination 'generic/platform=macOS' \
+              CODE_SIGN_IDENTITY="" \
+              CODE_SIGNING_REQUIRED=NO \
+              CODE_SIGNING_ALLOWED=NO \
+              | tee -a build.log
+          done
+      - name: SwiftLint Analyse
+        run: swiftlint analyze --strict --compiler-log-path build.log
