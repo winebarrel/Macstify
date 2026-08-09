@@ -1,6 +1,9 @@
 
 # Macstify
 
+[![CI](https://github.com/winebarrel/Macstify/actions/workflows/ci.yml/badge.svg)](https://github.com/winebarrel/Macstify/actions/workflows/ci.yml)
+[![AI Generated](https://img.shields.io/badge/AI%20Generated-Claude-orange?logo=anthropic)](https://claude.ai/claude-code)
+
 A macOS screen saver that recreates *Mystify Your Mind* from Windows 95: polygons drift across the
 screen, bounce off the edges and leave a trail of their past outlines behind, while their colors
 cycle through the spectrum.
