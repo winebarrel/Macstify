@@ -18,7 +18,7 @@ final class ConfigureSheetController: NSObject {
 
     let window: NSWindow
 
-    private var settings = MacstifySettings.standard
+    private var settings = MacstifySettings.load()
     private let onDismiss: (_ saved: Bool) -> Void
     private var rows: [Row] = []
 
@@ -33,17 +33,10 @@ final class ConfigureSheetController: NSObject {
         super.init()
         window.title = "Macstify"
         // ARC owns this window through `window`; leaving the default on would
-        // let a host that closes the sheet release it a second time.
+        // let a host that closes the sheet rather than ordering it out release
+        // it a second time.
         window.isReleasedWhenClosed = false
         buildInterface()
-        reload()
-    }
-
-    /// Re-reads the saved settings into the controls. The same sheet is handed
-    /// to the host every time it asks, so this is what makes the second opening
-    /// show what is stored rather than where the first one was left.
-    func reload() {
-        settings = .load()
         refresh()
     }
 

@@ -24,3 +24,28 @@ cycle through the spectrum.
 | Color speed | 1.00× | 0.0–3.0 | Hue cycling rate. `0.00×` freezes each shape on its starting color. |
 
 Settings are stored per user through `ScreenSaverDefaults` under `jp.winebarrel.Macstify`.
+
+## Known issue: the Options button does nothing
+
+On macOS 26 the Options button stops responding, reliably if you switch the screen
+saver away and back. Nothing appears, and nothing is logged.
+
+This is a bug in the host, not in the saver. System Settings spawns duplicate
+`legacyScreenSaver` instances and loses track of them, so the configure sheet is
+handed over, attached and ordered in — against a remote view window that is no
+longer on screen. Traced from inside a screen saver bundle, the sheet reports
+`isVisible == true` with a live `sheetParent`, while `occlusionState` never gains
+`.visible`: attached to a ghost, and never drawn. Which window the host attaches
+the sheet to is not something `configureSheet` can influence.
+
+Apple has it as FB19201567, along with FB19204084 for the `ScreenSaverView`
+instances that pile up alongside; neither is fixed as of 26.1b3. See
+[macOS 26 Tahoe Screen Saver issues](https://developer.apple.com/forums/thread/787444).
+
+Until it is fixed, restart the host:
+
+```sh
+killall legacyScreenSaver
+```
+
+then quit System Settings and open it again.

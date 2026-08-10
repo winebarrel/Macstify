@@ -8,9 +8,8 @@ import ScreenSaver
 @objc(MacstifyView)
 final class MacstifyView: ScreenSaverView {
     private let engine: MacstifyEngine
-    /// Built once and kept: the host releases its reference once the sheet is
-    /// up, and a deallocated controller takes the sheet's window and targets
-    /// with it.
+    /// Held strongly: the host releases its reference once the sheet is up,
+    /// and a deallocated controller takes the sheet's targets with it.
     private var sheetController: ConfigureSheetController?
 
     override init?(frame: NSRect, isPreview: Bool) {
@@ -55,23 +54,16 @@ final class MacstifyView: ScreenSaverView {
         true
     }
 
-    /// Hosts read this more than once, and can replace the view between reading
-    /// it and presenting it. Building a controller per read would hand back a
-    /// window whose only owner was dropped by the very next read — and the sheet
-    /// then simply never appears. One controller, kept, re-reading the settings
-    /// each time it is handed over.
     override var configureSheet: NSWindow? {
-        let controller = sheetController ?? makeSheetController()
-        sheetController = controller
-        controller.reload()
-        return controller.window
-    }
-
-    private func makeSheetController() -> ConfigureSheetController {
-        ConfigureSheetController { [weak self] saved in
-            guard let self, saved else { return }
-            engine.apply(Self.settings(isPreview: isPreview))
+        let controller = ConfigureSheetController { [weak self] saved in
+            guard let self else { return }
+            if saved {
+                engine.apply(Self.settings(isPreview: isPreview))
+            }
+            sheetController = nil
         }
+        sheetController = controller
+        return controller.window
     }
 
     private static func settings(isPreview: Bool) -> MacstifySettings {
